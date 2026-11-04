@@ -2,6 +2,8 @@
 
 A modern, responsive love calculator built with plain HTML, CSS and JavaScript. Enter two names and get an animated compatibility score with a breakdown of chemistry, communication, trust and fun.
 
+**Live demo:** https://aashana1012.github.io/love-calculator/
+
 ## Features
 
 - **Animated score ring** with a pulsing heart and counting percentage
