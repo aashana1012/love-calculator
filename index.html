@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoveMeter – Love Compatibility Calculator</title>
+  <meta name="description" content="Find out your love compatibility score instantly. Enter two names and let LoveMeter reveal your chemistry, trust, communication and fun scores." />
+  <meta property="og:title" content="LoveMeter – Love Compatibility Calculator" />
+  <meta property="og:description" content="Enter two names and discover your love compatibility score." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-hearts" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a href="#" class="brand" aria-label="LoveMeter home">
+      <span class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      </span>
+      <span class="brand-name">LoveMeter</span>
+    </a>
+    <nav class="nav">
+      <a href="#how-it-works">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Love Compatibility Calculator</p>
+      <h1>How strong is your <span class="gradient-text">love connection</span>?</h1>
+      <p class="lead">Enter two names and discover your compatibility score, complete with a breakdown of chemistry, trust, communication and fun.</p>
+    </section>
+
+    <section class="card" id="calculator" aria-labelledby="calc-title">
+      <h2 id="calc-title" class="sr-only">Calculator</h2>
+      <form id="love-form" novalidate>
+        <div class="fields">
+          <div class="field">
+            <label for="name1">Your name</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"/></svg>
+              </span>
+              <input id="name1" name="name1" type="text" placeholder="e.g. Aashana" autocomplete="off" maxlength="40" required />
+            </div>
+            <p class="error" id="error1" role="alert"></p>
+          </div>
+
+          <div class="plus" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+
+          <div class="field">
+            <label for="name2">Partner's name</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"/></svg>
+              </span>
+              <input id="name2" name="name2" type="text" placeholder="e.g. Alex" autocomplete="off" maxlength="40" required />
+            </div>
+            <p class="error" id="error2" role="alert"></p>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="calc-btn">
+          <span class="btn-text">Calculate Love</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <div class="result" id="result" hidden aria-live="polite">
+        <p class="result-names" id="result-names"></p>
+
+        <div class="meter">
+          <svg class="meter-ring" viewBox="0 0 120 120" aria-hidden="true">
+            <defs>
+              <linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff5fa2" />
+                <stop offset="100%" stop-color="#ff8a5c" />
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="60" cy="60" r="52" />
+            <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52" />
+          </svg>
+          <div class="meter-center">
+            <span class="heart-pulse" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            </span>
+            <span class="score" id="score">0%</span>
+          </div>
+        </div>
+
+        <h3 class="verdict" id="verdict"></h3>
+        <p class="message" id="message"></p>
+
+        <div class="breakdown" id="breakdown">
+          <div class="bar-row">
+            <span class="bar-label">Chemistry</span>
+            <div class="bar"><div class="bar-fill" data-key="chemistry"></div></div>
+            <span class="bar-value" data-value="chemistry">0%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Communication</span>
+            <div class="bar"><div class="bar-fill" data-key="communication"></div></div>
+            <span class="bar-value" data-value="communication">0%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Trust</span>
+            <div class="bar"><div class="bar-fill" data-key="trust"></div></div>
+            <span class="bar-value" data-value="trust">0%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">Fun</span>
+            <div class="bar"><div class="bar-fill" data-key="fun"></div></div>
+            <span class="bar-value" data-value="fun">0%</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-secondary" id="share-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+            <span id="share-text">Share result</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="reset-btn">Try another pair</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info" id="how-it-works">
+      <h2>How it works</h2>
+      <div class="info-grid">
+        <article class="info-card">
+          <div class="info-icon">1</div>
+          <h3>Enter two names</h3>
+          <p>Type your name and your partner's name. Spelling and order don't matter; the same pair always gets the same result.</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon">2</div>
+          <h3>We run the numbers</h3>
+          <p>Our algorithm blends the letters of both names into a unique compatibility signature across four dimensions.</p>
+        </article>
+        <article class="info-card">
+          <div class="info-icon">3</div>
+          <h3>Get your score</h3>
+          <p>See your overall love percentage, a personalised verdict and a breakdown you can share with friends.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="info faq" id="faq">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary>Is the love calculator accurate?</summary>
+        <p>LoveMeter is made for fun. Real relationships are built on communication, respect and shared values, not on name math. Enjoy the result and don't take it too seriously.</p>
+      </details>
+      <details>
+        <summary>Why do I get the same result every time?</summary>
+        <p>The score is generated deterministically from the two names, so the same pair always produces the same percentage no matter how many times you try.</p>
+      </details>
+      <details>
+        <summary>Do you store the names I enter?</summary>
+        <p>No. Everything is calculated in your browser and nothing is sent to a server.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with <span aria-label="love">❤</span> by Aashana &middot; LoveMeter is for entertainment only.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
